@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    container_name: inventaire_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/tools.db:/app/tools.db
+    environment:
+      DATABASE_URL: "sqlite:///./tools.db"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: inventaire_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    restart: unless-stopped

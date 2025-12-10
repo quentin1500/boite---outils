@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+python-multipart   # si tu veux gérer upload futur
+pydantic
